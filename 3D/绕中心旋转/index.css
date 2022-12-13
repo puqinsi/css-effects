@@ -1,0 +1,104 @@
+.content-box {
+    margin-top: 150px;
+    width: 100%;
+    height: 823px;
+    position: relative;
+}
+.people-box {
+    perspective: 2000px;
+}
+.wrap {
+    position: relative;
+    transform-style: preserve-3d;
+    // transform: rotateX(0deg) rotateY(0deg);
+    animation: elementRotate 6s linear infinite;
+}
+.body-box {
+    position: relative;
+    margin-bottom: 20px;
+    animation: elementRotate 6s linear infinite reverse;
+}
+.body {
+    width: 485px;
+    height: 739px;
+    display: block;
+    margin: 0 auto;
+}
+.light {
+    width: 320px;
+    height: 88px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    animation-name: lightLoop;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.body-element {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    width: 200px;
+    height: 150px;
+    background: linear-gradient(
+        360deg,
+        #1e85d0 0%,
+        rgba(131, 188, 228, 0) 100%
+    );
+    font-size: 30px;
+    text-align: center;
+    line-height: 150px;
+    color: #ffffff;
+}
+.element1 {
+    transform: translateX(-50%) rotateY(60deg) translateZ(200px); // 位移和旋转的顺序很重要，散开时位移的是 Z轴
+}
+.element2 {
+    transform: translateX(-50%) rotateY(180deg) translateZ(200px);
+}
+.element3 {
+    transform: translateX(-50%) rotateY(300deg) translateZ(200px);
+}
+.floor {
+    width: 750px;
+    height: 184px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+@keyframes lightLoop {
+    0% {
+        transform: translate(-50%, 0) rotateX(0deg);
+    }
+    45% {
+        transform: translate(-50%, 650px) rotateX(0deg);
+    }
+    50% {
+        transform: translate(-50%, 650px) rotateX(180deg);
+    }
+
+    95% {
+        transform: translate(-50%, 0) rotateX(180deg);
+    }
+    100% {
+        transform: translate(-50%, 0) rotateX(0deg);
+    }
+}
+
+@keyframes elementRotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
