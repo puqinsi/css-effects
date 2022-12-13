@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>正方体</title>
+        <link rel="stylesheet" href="./index.css" />
+    </head>
+    <body>
+        <div id="container">
+            <div id="wrap">
+                <div class="box-surface">1</div>
+                <div class="box-surface">2</div>
+                <div class="box-surface">3</div>
+                <div class="box-surface">4</div>
+                <div class="box-surface">5</div>
+                <div class="box-surface">6</div>
+            </div>
+        </div>
+
+        <script>
+            // const surfaceList = document.querySelectorAll('.box-surface');
+
+            // Array.prototype.forEach.call(surfaceList, (dom, index) => {
+            // });
+            const box = document.getElementById('wrap');
+            const slideCha = 3; // 滑动灵敏度
+            const rotateCha = 3; // 滑动灵敏度
+            let currentX, currentY;
+            let moveFlag = false;
+            let rotateX = (rotateY = -20);
+            window.onmousedown = el => {
+                if (el.target.parentNode === box) {
+                    currentY = el.offsetY;
+                    moveFlag = true;
+                    currentX = el.offsetX;
+                }
+            };
+
+            window.onmousemove = el => {
+                if (!moveFlag) return;
+
+                const { offsetX, offsetY } = el;
+
+                if (offsetX > currentX + slideCha) {
+                    rotateY += rotateCha;
+                } else if (offsetX < currentX - slideCha) {
+                    rotateY -= rotateCha;
+                }
+
+                if (offsetY > currentY + slideCha) {
+                    rotateX -= rotateCha;
+                } else if (offsetY < currentY - slideCha) {
+                    rotateX += rotateCha;
+                }
+
+                currentX = offsetX;
+                currentY = offsetY;
+
+                box.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            };
+
+            window.onmouseup = el => {
+                moveFlag = false;
+            };
+        </script>
+    </body>
+</html>
