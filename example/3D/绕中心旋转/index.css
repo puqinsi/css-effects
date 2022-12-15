@@ -6,17 +6,18 @@
 }
 .people-box {
     perspective: 2000px;
+    perspective-origin: 50% 0%;
+    transform-style: preserve-3d;
 }
 .wrap {
     position: relative;
     transform-style: preserve-3d;
     // transform: rotateX(0deg) rotateY(0deg);
-    animation: elementRotate 6s linear infinite;
+    animation: rotate_3D 6s linear infinite;
 }
 .body-box {
     position: relative;
-    margin-bottom: 20px;
-    animation: elementRotate 6s linear infinite reverse;
+    margin-bottom: -20px;
 }
 .body {
     width: 485px;
@@ -30,10 +31,10 @@
     display: block;
     position: absolute;
     left: 50%;
-    top: 0;
+    top: -80px;
     transform: translateX(-50%);
     animation-name: lightLoop;
-    animation-duration: 8s;
+    animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -43,6 +44,31 @@
     bottom: 20px;
     width: 200px;
     height: 150px;
+    transform-style: preserve-3d;
+}
+/* .element1 {
+    transform: translateX(-50%) rotateY(60deg) translateZ(200px); // 位移和旋转的顺序很重要，散开时位移的是 Z轴
+}
+.element2 {
+    transform: translateX(-50%) rotateY(180deg) translateZ(200px);
+}
+.element3 {
+    transform: translateX(-50%) rotateY(300deg) translateZ(200px);
+} */
+.element1 {
+    transform: translateX(-50%) rotateY(60deg) translateZ(200px) rotateY(-60deg); // 位移和旋转的顺序很重要，散开时位移的是 Z轴
+}
+.element2 {
+    transform: translateX(-50%) rotateY(180deg) translateZ(200px)
+        rotateY(-180deg);
+}
+.element3 {
+    transform: translateX(-50%) rotateY(300deg) translateZ(200px)
+        rotateY(-300deg);
+}
+.element-content {
+    width: 100%;
+    height: 100%;
     background: linear-gradient(
         360deg,
         #1e85d0 0%,
@@ -52,16 +78,9 @@
     text-align: center;
     line-height: 150px;
     color: #ffffff;
+    animation: rotate_3D 6s linear infinite reverse;
 }
-.element1 {
-    transform: translateX(-50%) rotateY(60deg) translateZ(200px); // 位移和旋转的顺序很重要，散开时位移的是 Z轴
-}
-.element2 {
-    transform: translateX(-50%) rotateY(180deg) translateZ(200px);
-}
-.element3 {
-    transform: translateX(-50%) rotateY(300deg) translateZ(200px);
-}
+
 .floor {
     width: 750px;
     height: 184px;
@@ -72,7 +91,7 @@
     transform: translateX(-50%);
     z-index: -1;
 }
-@keyframes lightLoop {
+/* @keyframes lightLoop {
     0% {
         transform: translate(-50%, 0) rotateX(0deg);
     }
@@ -89,9 +108,27 @@
     100% {
         transform: translate(-50%, 0) rotateX(0deg);
     }
+} */
+@keyframes lightLoop {
+    0% {
+        transform: translate(-50%, -10px) rotateX(0deg);
+        opacity: 0;
+    }
+    5% {
+        transform: translate(-50%, 10) rotateX(0deg);
+        opacity: 1;
+    }
+    95% {
+        transform: translate(-50%, 720px) rotateX(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, 740px) rotateX(0deg);
+        opacity: 0;
+    }
 }
 
-@keyframes elementRotate {
+@keyframes rotate_3D {
     0% {
         transform: rotateY(0deg);
     }
